@@ -2,13 +2,14 @@ package CalculatorApplication;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 
 
 
 
 
-public class CalApp {
+public class CalApp implements ActionListener {
                                        //Swing Javaframe Class Object Declaration//
     JFrame frame=new JFrame("Calculator-Robin");
     JLabel label = new JLabel();
@@ -38,6 +39,7 @@ public class CalApp {
     JButton buttonCubert = new JButton("\u221Bx");
     JButton buttonReciprocal = new JButton("1/x");
     JButton buttonSqrt = new JButton("\u221Ax");
+    JButton buttonpercent = new JButton("\u0025");
 
 
 
@@ -207,9 +209,54 @@ public class CalApp {
         frame.add(buttonCubert);
 
 
+        buttonpercent.setBounds(150, 210, 60, 40);
+        buttonpercent.setFont(new Font("Arial", Font.BOLD, 12));
+        buttonpercent.setBackground(Color.orange);
+        buttonpercent.setForeground(Color.black);
+        frame.add(buttonpercent);
+
     }
+                                  //Action Listener Event//24 Button
+
+    public void addActionEvent()
+    {
+        onRadioButton.addActionListener(this);
+        offRadioButton.addActionListener(this);
+        buttonZero.addActionListener(this);
+        buttonOne.addActionListener(this);
+        buttonTwo.addActionListener(this);
+        buttonThree.addActionListener(this);
+        buttonFour.addActionListener(this);
+        buttonFive.addActionListener(this);
+        buttonSix.addActionListener(this);
+        buttonSeven.addActionListener(this);
+        buttonEight.addActionListener(this);
+        buttonNine.addActionListener(this);
+        buttonDelete.addActionListener(this);
+        buttonClear.addActionListener(this);
+        buttonSquare.addActionListener(this);
+        buttonSqrt.addActionListener(this);
+        buttonCube.addActionListener(this);
+        buttonCubert.addActionListener(this);
+        buttonEqual.addActionListener(this);
+        buttonPlus.addActionListener(this);
+        buttonMinus.addActionListener(this);
+        buttonDiv.addActionListener(this);
+        buttonMul.addActionListener(this);
+        buttonpercent.addActionListener(this);
+        buttonEqual.addActionListener(this);
+        buttonEqual.addActionListener(this);
+        buttonDot.addActionListener(this);
 
 
+
+
+
+
+
+
+
+    }
 
 
 
@@ -224,13 +271,14 @@ public class CalApp {
     CalApp(){
         prepareGUI();
         AddComponents();
-
+        addActionEvent();
 
 
 
 
 
     }
+
 
 
 
@@ -247,5 +295,9 @@ public class CalApp {
 
     }
 
+      //created method for ActionListner Abstract class which is implemented
+    @Override
+    public void actionPerformed(ActionEvent e) {
 
+    }
 }
