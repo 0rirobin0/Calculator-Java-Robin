@@ -135,7 +135,7 @@ public class CalApp {
 
         buttonEqual.setBounds(220, 450, 60, 100);
         buttonEqual.setFont(new Font("Arial", Font.BOLD, 20));
-        buttonEqual.setBackground(Color.black);
+        buttonEqual.setBackground(Color.DARK_GRAY);
         buttonEqual.setForeground(Color.white);
         frame.add(buttonEqual);
 
@@ -147,9 +147,12 @@ public class CalApp {
         frame.add(buttonDiv);
 
 
-        buttonMul.setBounds(220, 270, 60, 40);
+        buttonMul.setBounds(220, 210, 60, 40);
         buttonMul.setFont(new Font("Arial", Font.BOLD, 20));
-        buttonMul.setBackground(new Color(239, 188, 2));
+        buttonMul.setBackground(Color.BLACK);
+        buttonMul.setForeground(Color.WHITE);
+
+
         frame.add(buttonMul);
 
         buttonMinus.setBounds(220, 330, 60, 40);
@@ -181,13 +184,13 @@ public class CalApp {
         frame.add(buttonReciprocal);
 
 
-        buttonDelete.setBounds(150, 210, 60, 40);
+        buttonDelete.setBounds(150, 150, 60, 40);
         buttonDelete.setFont(new Font("Arial", Font.BOLD, 12));
         buttonDelete.setBackground(Color.red);
         buttonDelete.setForeground(Color.black);
         frame.add(buttonDelete);
 
-        buttonClear.setBounds(220, 210, 60, 40);
+        buttonClear.setBounds(220, 150, 60, 40);
         buttonClear.setFont(new Font("Arial", Font.BOLD, 12));
         buttonClear.setBackground(Color.red);
         buttonClear.setForeground(Color.black);
