@@ -10,6 +10,19 @@ import java.awt.event.*;
 
 
 public class CalApp implements ActionListener {
+                                    //Variables
+    double num1=0,num2=0,Result=0;
+    int Calculation;
+
+
+
+
+
+
+
+
+
+
                                        //Swing Javaframe Class Object Declaration//
     JFrame frame=new JFrame("Calculator-Robin");
     JLabel label = new JLabel();
@@ -299,5 +312,94 @@ public class CalApp implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
 
+        //action will be performed for each button
+
+        Object source=e.getSource();
+
+        //when Calculator is ON
+        if(source==onRadioButton)
+        {
+        enable(); //enable method will works!
+        }else if(source==offRadioButton)
+        {
+            disable();
+        }
+
+
+
+
     }
+    //creating enable method
+    public void enable()
+    {
+
+      onRadioButton.setEnabled(false);
+      offRadioButton.setEnabled(true);
+        buttonZero.setEnabled(true);
+        buttonOne.setEnabled(true);
+        buttonTwo.setEnabled(true);
+        buttonThree.setEnabled(true);
+        buttonFour.setEnabled(true);
+        buttonFive.setEnabled(true);
+        buttonSix.setEnabled(true);
+        buttonSeven.setEnabled(true);
+        buttonEight.setEnabled(true);
+        buttonNine.setEnabled(true);
+        buttonDelete.setEnabled(true);
+        buttonClear.setEnabled(true);
+        buttonSquare.setEnabled(true);
+        buttonSqrt.setEnabled(true);
+        buttonCube.setEnabled(true);
+        buttonCubert.setEnabled(true);
+        buttonEqual.setEnabled(true);
+        buttonPlus.setEnabled(true);
+        buttonMinus.setEnabled(true);
+        buttonDiv.setEnabled(true);
+        buttonMul.setEnabled(true);
+        buttonpercent.setEnabled(true);
+        buttonEqual.setEnabled(true);
+        buttonEqual.setEnabled(true);
+        buttonDot.setEnabled(true);
+    }
+
+
+
+    //Creating Disable Method
+
+    public void disable()
+    {
+
+        onRadioButton.setEnabled((true));
+        offRadioButton.setEnabled(false);
+        buttonZero.setEnabled(false);
+        buttonOne.setEnabled(false);
+        buttonTwo.setEnabled(false);
+        buttonThree.setEnabled(false);
+        buttonFour.setEnabled(false);
+        buttonFive.setEnabled(false);
+        buttonSix.setEnabled(false);
+        buttonSeven.setEnabled(false);
+        buttonEight.setEnabled(false);
+        buttonNine.setEnabled(false);
+        buttonDelete.setEnabled(false);
+        buttonClear.setEnabled(false);
+        buttonSquare.setEnabled(false);
+        buttonSqrt.setEnabled(false);
+        buttonCube.setEnabled(false);
+        buttonCubert.setEnabled(false);
+        buttonEqual.setEnabled(false);
+        buttonPlus.setEnabled(false);
+        buttonMinus.setEnabled(false);
+        buttonDiv.setEnabled(false);
+        buttonMul.setEnabled(false);
+        buttonpercent.setEnabled(false);
+        buttonEqual.setEnabled(false);
+        buttonEqual.setEnabled(false);
+        buttonDot.setEnabled(false);
+    }
+
+
+
+
+
 }
