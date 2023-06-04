@@ -11,8 +11,8 @@ import java.awt.event.*;
 
 public class CalApp implements ActionListener {
                                     //Variables
-    double num1=0,num2=0,Result=0;
-    int Calculation;
+    double num1=0,num2=0,Result=0,number,answer=0;
+    int calculation;
 
 
 
@@ -257,10 +257,8 @@ public class CalApp implements ActionListener {
         buttonDiv.addActionListener(this);
         buttonMul.addActionListener(this);
         buttonpercent.addActionListener(this);
-        buttonEqual.addActionListener(this);
-        buttonEqual.addActionListener(this);
         buttonDot.addActionListener(this);
-
+        buttonReciprocal.addActionListener(this);
 
 
 
@@ -322,12 +320,30 @@ public class CalApp implements ActionListener {
         if (source == onRadioButton) {
             enable();
 
+            textField.setText("Hello!");
+            Timer timer = new Timer(2000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    textField.setText("");
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
+
 
         }
 
         else if (source == offRadioButton) {
             disable();
-
+            textField.setText("Good Bye!");
+            Timer timer = new Timer(2000, new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    textField.setText("");
+                }
+            });
+            timer.setRepeats(false);
+            timer.start();
 
 
         }
@@ -381,6 +397,7 @@ public class CalApp implements ActionListener {
         else if (source == buttonSix) {
             textField.setText(textField.getText() + "6");
 
+
         } else if (source == buttonSeven) {
             textField.setText(textField.getText() + "7");
 
@@ -396,8 +413,97 @@ public class CalApp implements ActionListener {
 
 
         }
-        else if (source == buttonReciprocal) {
+        else if (source==buttonReciprocal)
+        {
+            double num=Double.parseDouble(textField.getText());
+            double r= 1/num;
+           if(Double.toString(r).endsWith(".0")) {
+               Double.toString(r).replace(".0", "");
+               textField.setText(Double.toString(r));
+           }
+
+            else textField.setText(Double.toString(r));
+        }
+
+
+
+        else if (source == buttonSqrt) {
             double number = Double.parseDouble(textField.getText());
+            double sqrt = Math.sqrt(number);
+            textField.setText(Double.toString(sqrt));
+
+        } else if (source==buttonSquare) {
+            double num=Double.parseDouble(textField.getText());
+            double sqr=Math.pow(num,2);
+            textField.setText(Double.toString(sqr));
+
+        } else if (source == buttonCubert) {
+            double number = Double.parseDouble(textField.getText());
+            Double cubert = Math.cbrt(number);
+            textField.setText(Double.toString(cubert));
+
+        }
+        else if (source==buttonCube)
+        {
+            double number =Double.parseDouble(textField.getText());
+            double cube=Math.pow(number,3);
+            textField.setText(Double.toString(cube));
+        }
+
+
+            //Plus//minus
+        else if (source == buttonPlus) {
+            String str = textField.getText();
+            number = Double.parseDouble(textField.getText());
+            textField.setText("");
+            label.setText(str + "+");
+            calculation = 1;
+        } else if (source == buttonMinus) {
+            String str = textField.getText();
+            number = Double.parseDouble(textField.getText());
+            textField.setText("");
+            label.setText(str + "-");
+            calculation = 2;
+        } else if (source == buttonMul) {
+            String str = textField.getText();
+            number = Double.parseDouble(textField.getText());
+            textField.setText("");
+            label.setText(str + "X");
+            calculation = 3;
+        } else if (source == buttonDiv) {
+            String str = textField.getText();
+            number = Double.parseDouble(textField.getText());
+            textField.setText("");
+            label.setText(str + "/");
+            calculation = 4;
+        }else if (source==buttonpercent)
+        {
+            String str=textField.getText();
+            number=Double.parseDouble(textField.getText());
+            textField.setText("");
+            label.setText(str + "%");
+            calculation=5;
+        }
+
+
+        else if (source == buttonSqrt) {
+            number = Double.parseDouble(textField.getText());
+            Double sqrt = Math.sqrt(number);
+            textField.setText(Double.toString(sqrt));
+
+        } else if (source == buttonSquare) {
+            String str = textField.getText();
+            number = Double.parseDouble(textField.getText());
+            double square = Math.pow(number, 2);
+            String string = Double.toString(square);
+            if (string.endsWith(".0")) {
+                textField.setText(string.replace(".0", ""));
+            } else {
+                textField.setText(string);
+            }
+            label.setText("(sqr)" + str);
+        } else if (source == buttonReciprocal) {
+            number = Double.parseDouble(textField.getText());
             double reciprocal = 1 / number;
             String string = Double.toString(reciprocal);
             if (string.endsWith(".0")) {
@@ -405,27 +511,62 @@ public class CalApp implements ActionListener {
             } else {
                 textField.setText(string);
             }
+        } else if (source == buttonEqual) {
+            switch (calculation) {
+                case 1:
+                    num2 = Double.parseDouble(textField.getText());
 
-        }
+                    double answer = number + num2;
 
-        else if (source == buttonSqrt) {
-            double number = Double.parseDouble(textField.getText());
-            Double sqrt = Math.sqrt(number);
-            textField.setText(Double.toString(sqrt));
 
-        }
+                    if (Double.toString(answer).endsWith(".0")) {
+                        textField.setText(Double.toString(answer).replace(".0", ""));
+                    } else {
+                        textField.setText(Double.toString(answer));
+                    }
 
-        else if (source == buttonCubert) {
-            double number = Double.parseDouble(textField.getText());
-            Double cubert = Math.cbrt(number);
-            textField.setText(Double.toString(cubert));
+                    label.setText("");
+                    break;
 
-        }
+                case 2:
+                    answer = number - Double.parseDouble(textField.getText());
+                    if (Double.toString(answer).endsWith(".0")) {
+                        textField.setText(Double.toString(answer).replace(".0", ""));
+                    } else {
+                        textField.setText(Double.toString(answer));
+                    }
+                    label.setText("");
+                    break;
+                case 3:
+                    answer = number * Double.parseDouble(textField.getText());
+                    if (Double.toString(answer).endsWith(".0")) {
+                        textField.setText(Double.toString(answer).replace(".0", ""));
+                    } else {
+                        textField.setText(Double.toString(answer));
+                    }
+                    label.setText("");
+                    break;
+                case 4:
+                    answer = number / Double.parseDouble(textField.getText());
+                    if (Double.toString(answer).endsWith(".0")) {
+                        textField.setText(Double.toString(answer).replace(".0", ""));
+                    } else {
+                        textField.setText(Double.toString(answer));
+                    }
+                    label.setText("");
+                    break;
+                case 5:
+                    answer=number*(Double.parseDouble(textField.getText())/100);
+                    if (Double.toString(answer).endsWith(".0")) {
+                        textField.setText(Double.toString(answer).replace(".0", ""));
+                    } else {
+                        textField.setText(Double.toString(answer));
+                    }
+                    label.setText("");
+                    break;
+            }
 
-            //Plus
-       // else if (source==buttonPlus) {
-            
-       //}
+      }
 
 
     }
@@ -467,7 +608,6 @@ public class CalApp implements ActionListener {
         buttonDiv.setEnabled(true);
         buttonMul.setEnabled(true);
         buttonpercent.setEnabled(true);
-        buttonEqual.setEnabled(true);
         buttonDot.setEnabled(true);
         buttonReciprocal.setEnabled(true);
     }
@@ -504,7 +644,6 @@ public class CalApp implements ActionListener {
         buttonDiv.setEnabled(false);
         buttonMul.setEnabled(false);
         buttonpercent.setEnabled(false);
-        buttonEqual.setEnabled(false);
         buttonDot.setEnabled(false);
         buttonReciprocal.setEnabled(false);
     }
