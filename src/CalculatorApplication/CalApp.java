@@ -91,7 +91,7 @@ public class CalApp implements ActionListener {
 
         offRadioButton.setBounds(80,100,60,40);
         offRadioButton.setBackground(Color.black);
-        offRadioButton.setForeground(Color.white);
+        offRadioButton.setForeground(Color.red);
         offRadioButton.setFont(new Font("Arial",Font.BOLD,14));
         offRadioButton.setSelected(false);
         frame.add(offRadioButton);
@@ -309,30 +309,140 @@ public class CalApp implements ActionListener {
     }
 
       //created method for ActionListner Abstract class which is implemented
+
+                                 //Get input and print on screen 26btn//
+
+
+
+
     @Override
+
     public void actionPerformed(ActionEvent e) {
+        Object source = e.getSource();
+        if (source == onRadioButton) {
+            enable();
 
-        //action will be performed for each button
 
-        Object source=e.getSource();
+        }
 
-        //when Calculator is ON
-        if(source==onRadioButton)
-        {
-        enable(); //enable method will works!
-        }else if(source==offRadioButton)
-        {
+        else if (source == offRadioButton) {
             disable();
+
+
+
         }
 
 
 
 
+        else if (source == buttonClear) {
+            label.setText("");
+            textField.setText("");
+        }
+
+        else if (source == buttonDelete) {
+            int length = textField.getText().length();
+            int number = length - 1;
+
+
+            if (length > 0) {
+                StringBuilder back = new StringBuilder(textField.getText());
+                back.deleteCharAt(number);
+                textField.setText(back.toString());
+
+            }
+            if (textField.getText().endsWith("")) {
+                label.setText("");
+            }
+
+
+        } else if (source == buttonZero) {
+            if (textField.getText().equals("0")) {
+                return;
+            } else {
+                textField.setText(textField.getText() + "0");
+            }
+        } else if (source == buttonOne) {
+            textField.setText(textField.getText() + "1");
+
+        } else if (source == buttonTwo) {
+            textField.setText(textField.getText() + "2");
+
+        } else if (source == buttonThree) {
+            textField.setText(textField.getText() + "3");
+
+        } else if (source == buttonFour) {
+            textField.setText(textField.getText() + "4");
+
+        } else if (source==buttonFive) {
+            textField.setText(textField.getText()+"5");
+
+        }
+        else if (source == buttonSix) {
+            textField.setText(textField.getText() + "6");
+
+        } else if (source == buttonSeven) {
+            textField.setText(textField.getText() + "7");
+
+        } else if (source == buttonEight) {
+            textField.setText(textField.getText() + "8");
+
+        } else if (source == buttonNine) {
+            textField.setText(textField.getText() + "9");
+
+        } else if (source == buttonDot) {
+            if(textField.getText().contains("."))return;
+            else textField.setText(textField.getText()+".");
+
+
+        }
+        else if (source == buttonReciprocal) {
+            double number = Double.parseDouble(textField.getText());
+            double reciprocal = 1 / number;
+            String string = Double.toString(reciprocal);
+            if (string.endsWith(".0")) {
+                textField.setText(string.replace(".0", ""));
+            } else {
+                textField.setText(string);
+            }
+
+        }
+
+        else if (source == buttonSqrt) {
+            double number = Double.parseDouble(textField.getText());
+            Double sqrt = Math.sqrt(number);
+            textField.setText(Double.toString(sqrt));
+
+        }
+
+        else if (source == buttonCubert) {
+            double number = Double.parseDouble(textField.getText());
+            Double cubert = Math.cbrt(number);
+            textField.setText(Double.toString(cubert));
+
+        }
+
+            //Plus
+       // else if (source==buttonPlus) {
+            
+       //}
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
     //creating enable method
     public void enable()
     {
-
       onRadioButton.setEnabled(false);
       offRadioButton.setEnabled(true);
         buttonZero.setEnabled(true);
@@ -358,17 +468,18 @@ public class CalApp implements ActionListener {
         buttonMul.setEnabled(true);
         buttonpercent.setEnabled(true);
         buttonEqual.setEnabled(true);
-        buttonEqual.setEnabled(true);
         buttonDot.setEnabled(true);
+        buttonReciprocal.setEnabled(true);
     }
 
 
 
-    //Creating Disable Method
+    //Creating Disable Method//26btn
 
     public void disable()
     {
-
+        textField.setText("");
+        //label.setText(" ");
         onRadioButton.setEnabled((true));
         offRadioButton.setEnabled(false);
         buttonZero.setEnabled(false);
@@ -394,8 +505,8 @@ public class CalApp implements ActionListener {
         buttonMul.setEnabled(false);
         buttonpercent.setEnabled(false);
         buttonEqual.setEnabled(false);
-        buttonEqual.setEnabled(false);
         buttonDot.setEnabled(false);
+        buttonReciprocal.setEnabled(false);
     }
 
 
