@@ -1,18 +1,17 @@
 package CalculatorApplication;
 
+import javax.management.StringValueExp;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-
-
-
-
+import java.util.ArrayList;
 
 
 public class CalApp implements ActionListener {
                                     //Variables
     double num1=0,num2=0,Result=0,number,answer=0;
-    int calculation;
+    int calculation,Del;
+    ArrayList<String>Memory= new ArrayList<String>();
 
 
 
@@ -53,7 +52,8 @@ public class CalApp implements ActionListener {
     JButton buttonReciprocal = new JButton("1/x");
     JButton buttonSqrt = new JButton("\u221Ax");
     JButton buttonpercent = new JButton("\u0025");
-
+    JButton buttonSave = new JButton("Sav");
+    JButton buttonMem = new JButton("M");
 
 
                                               //UserGraphics Methods//
@@ -72,8 +72,9 @@ public class CalApp implements ActionListener {
 
 
     public void AddComponents() {
-        label.setBounds(250, 0, 50, 50);
+        label.setBounds(10, 0, 200, 50);
         label.setForeground(Color.white);
+        label.setHorizontalAlignment(SwingConstants.RIGHT);
         frame.add(label);
 
         textField.setBounds(10, 40, 270, 60);
@@ -199,17 +200,34 @@ public class CalApp implements ActionListener {
         frame.add(buttonReciprocal);
 
 
-        buttonDelete.setBounds(150, 150, 60, 40);
+        buttonDelete.setBounds(220, 150, 60, 40);
         buttonDelete.setFont(new Font("Arial", Font.BOLD, 12));
         buttonDelete.setBackground(Color.red);
         buttonDelete.setForeground(Color.black);
         frame.add(buttonDelete);
 
-        buttonClear.setBounds(220, 150, 60, 40);
+        buttonClear.setBounds(150, 150, 60, 40);
         buttonClear.setFont(new Font("Arial", Font.BOLD, 12));
         buttonClear.setBackground(Color.red);
         buttonClear.setForeground(Color.black);
         frame.add(buttonClear);
+        //save btn
+        buttonSave.setBounds(80, 150, 60, 40);
+        buttonSave.setFont(new Font("Arial", Font.BOLD, 12));
+        buttonSave.setBackground(Color.cyan);
+        buttonSave.setForeground(Color.black);
+        frame.add(buttonSave);
+        //mem btn
+        buttonMem.setBounds(10, 150, 60, 40);
+        buttonMem.setFont(new Font("Arial", Font.BOLD, 12));
+        buttonMem.setBackground(Color.cyan);
+        buttonMem.setForeground(Color.black);
+        frame.add(buttonMem);
+
+
+
+
+
 
         buttonCube.setBounds(80, 210, 60, 40);
         buttonCube.setFont(new Font("Arial", Font.BOLD, 20));
@@ -259,7 +277,8 @@ public class CalApp implements ActionListener {
         buttonpercent.addActionListener(this);
         buttonDot.addActionListener(this);
         buttonReciprocal.addActionListener(this);
-
+        buttonMem.addActionListener(this);
+        buttonSave.addActionListener(this);
 
 
 
@@ -354,6 +373,7 @@ public class CalApp implements ActionListener {
         else if (source == buttonClear) {
             label.setText("");
             textField.setText("");
+            Del=0;
         }
 
         else if (source == buttonDelete) {
@@ -369,6 +389,12 @@ public class CalApp implements ActionListener {
             }
             if (textField.getText().endsWith("")) {
                 label.setText("");
+
+            if (Del==1)
+            {
+               Memory.remove(Memory.size()-1);
+               label.setText("Mem:"+String.valueOf(Memory));
+            }
             }
 
 
@@ -566,9 +592,21 @@ public class CalApp implements ActionListener {
                     break;
             }
 
-      }
+      } else if (source==buttonSave) {
+           if(Memory.size()<=10) {
+               Memory.add(textField.getText());
+           }
+           else label.setText("Out of Memory!");
+
+        } else if (source==buttonMem) {
+
+                label.setText("Mem:" + String.valueOf(Memory));
+                Del=1;
 
 
+
+
+        }
     }
 
 
@@ -610,6 +648,8 @@ public class CalApp implements ActionListener {
         buttonpercent.setEnabled(true);
         buttonDot.setEnabled(true);
         buttonReciprocal.setEnabled(true);
+        buttonSave.setEnabled(true);
+        buttonMem.setEnabled(true);
     }
 
 
@@ -646,6 +686,8 @@ public class CalApp implements ActionListener {
         buttonpercent.setEnabled(false);
         buttonDot.setEnabled(false);
         buttonReciprocal.setEnabled(false);
+        buttonSave.setEnabled(false);
+        buttonMem.setEnabled(false);
     }
 
 
